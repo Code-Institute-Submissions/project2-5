@@ -1,0 +1,65 @@
+"rank","region","country","dollarthou","dollar","population"
+1,A,    Qatar,      124,927,s
+2,E,	Luxembourg,	109,192,s
+3,A,	Singapore,	90,531,s
+4,A,	Brunei	,	76,743,s
+5,E,	Ireland,	72,632,s
+6,E,	Norway	,	70,590,s
+7,A,	 Kuwait	,	69,669,s
+8,A,	 UAE    ,   68,245,s
+9,E,	 Switzerland,	61,360,s
+10,E,	 San Marino,	60,359,s
+11,U,	 USA,	        59,495,l
+12,A,	 Saudi Arabia,	55,263,m
+13,E,	 Netherlands,	53,582,m
+14,E,	 Iceland,	52,150,s
+15,A,	 Bahrain,	51,846,s
+16,E,	 Sweden	,	51,264,s
+17,E,	 Germany,	50,206,l
+18,D,	 Australia,	49,882,m
+19,A,	 Taiwan	,	49,827,m
+20,E,	 Denmark,	49,613,s
+21,E,	 Austria,	49,247,s
+22,U,	 Canada	,	48,141,m
+23,E,	 Belgium,	46,301,s
+24,A,	 Oman	,	45,464,s
+25,E,	 Finland,	44,050,s
+26,E,	 UK,	43,620,l
+27,E,	 France	,	43,550,l
+28,A,	 Japan	,	42,659,l
+29,E,	 Malta	,	42,532,s
+30,A,	 South Korea,	39,387,l
+31,D,	 New Zealand,	38,502,s
+32,E,	 Spain	,	38,171,m
+33,E,	 Italy	,	37,970,l
+34,E,	 Cyprus	,	36,557,s
+35,A,	 Israel	,	36,250,s
+36,E,	 Czechia,	35,223,s
+37,F,	 Eq. Guinea,	34,865,s
+38,E,	 Slovenia,	34,063,s
+39,E,	 Slovakia,	32,895,s
+40,E,	 Lithuania,	31,935,s
+41,E,	 Estonia,	31,473,s
+42,U,	 Trinidad+Tob,	31,154,s
+43,E,	 Portugal,	30,258,s
+44,E,	 Poland	,	29,251,m
+45,E,	 Hungary,	28,910,s
+46,A,	 Malaysia,	28,871,m
+47,F,	 Seychelles,	28,712,s
+48,E,	 Russia	,	27,890,l
+49,E,	 Greece	,	27,776,s
+50,E,	 Latvia	,	27,291,s
+51,U,	 StKittsNevis,	26,849,s
+52,U,	 AntiguaBarbud,	26,198,s
+53,A,	 Turkey	,	26,453,l
+54,A,	 Kazakhstan,	26,071,m
+55,U,	 Bahamas,	25,080,s
+56,U,	 Chile	,	24,588,m
+57,U,	 Panama	,	24,262,s
+58,E,	 Croatia,	24,095,s
+59,E,	 Romania,	23,991,m
+60,U,	 Uruguay,	22,445,s
+61,F,	 Mauritius,	21,628,s
+62,E,	 Bulgaria,	21,578,s
+63,U,	 Argentina,	20,677,m
+64,A,	 Iran	,	20,030,l
