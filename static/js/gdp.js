@@ -1,17 +1,26 @@
 queue()
-    .defer(d3.csv, "data/gdp20t.csv")
+    .defer(d3.csv, "data/gdp20t.csv")   //region dollar rank country
+    .defer(d3.csv, "data/historic-gdp.csv") //"Region","year","gdpgrowth"
     .await(makeGraphs);
 //region dollar rank country
-function makeGraphs(error, gdpData) {
+function makeGraphs(error, gdpData, gdpGrowth) {
     var ndx = crossfilter(gdpData);
     gdpData.forEach(function(d){
         d.dollarthou = parseInt(d.dollarthou);
     })
+    var hix = crossfilter(gdpGrowth);
+    var parseYear = d3.time.format("%Y").parse;
+    gdpGrowth.forEach(function(d){
+            d.year = parseYear(d.year)
+    });
+    gdpGrowth.forEach(function(d){
+            d.gdpgrowth = parseFloat(d.gdpgrowth)
+    });
     showSelector(ndx);
     showGdpPc(ndx);
     showAverageGdpPc(ndx);
+    showHistoricGrowth(hix);
     dc.renderAll();
-
 }
 function showSelector(ndx) { 
     var dim = ndx.dimension(dc.pluck('population')); 
@@ -38,7 +47,8 @@ function showGdpPc(ndx) {
         .x(d3.scale.ordinal()) 
         .xUnits(dc.units.ordinal) 
         .elasticY(true) 
-        .xAxisLabel("Region") 
+        .xAxisLabel("Region")
+        .yAxisLabel("No. of countries")
         .yAxis().ticks(10);
         
     dc.pieChart('#gdpie')
@@ -91,7 +101,57 @@ function showAverageGdpPc(ndx) {
         .xUnits(dc.units.ordinal)
         .elasticY(true)
         .xAxisLabel("Average per Capita Income")
+        .yAxisLabel("$1000s")
         .yAxis().ticks(5);
     
 }
 
+function showHistoricGrowth(hix) {
+    var ydim = hix.dimension(dc.pluck("year"));
+    
+    var minYear = ydim.bottom(1)[0].year;
+    var maxYear = ydim.top(1)[0].year;
+    var irlgrowth = ydim.group().reduceSum(function (d) {
+            if (d.Region === 'Ireland') {
+                return +d.gdpgrowth;
+            } else {
+                return 0;
+                }
+            });
+    var eurogrowth = ydim.group().reduceSum(function (d) {
+            if (d.Region === 'Euro area') {
+                return +d.gdpgrowth;
+            } else {
+                return 0;
+                }
+            });
+    var oecdgrowth = ydim.group().reduceSum(function (d) {
+            if (d.Region === 'OECD members') {
+                return +d.gdpgrowth;
+            } else {
+                return 0;
+                }
+            });
+    
+    var compositeChart = dc.compositeChart('#historic-gdp-growth');
+        compositeChart
+            .width(400)
+            .height(250)
+            .dimension(ydim)
+            .yAxisLabel("gdp-%")
+            .x(d3.time.scale().domain([minYear, maxYear]))
+            .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+            .renderHorizontalGridLines(true)
+            .compose([
+                dc.lineChart(compositeChart)
+                    .colors('green')
+                    .group(irlgrowth, 'Ireland'),
+                dc.lineChart(compositeChart)
+                    .colors('red')
+                    .group(eurogrowth, 'Euro area'),
+                dc.lineChart(compositeChart)
+                    .colors('blue')
+                    .group(oecdgrowth, 'OECD')
+            ])
+            .brushOn(false); 
+}
