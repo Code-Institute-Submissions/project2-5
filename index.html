@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="static/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
     <link rel="stylesheet" href="static/css/dc.min.css" type="text/css" />
     <script type="text/javascript" src="static/js/d3.min.js"></script>
     <script type="text/javascript" src="static/js/crossfilter.min.js"></script>
@@ -12,15 +14,28 @@
     <script type="text/javascript" src="static/js/queue.min.js"></script>
     <script type="text/javascript" src="static/js/gdp.js"></script>
     <title>GDP Data G60</title>
+    <style type="text/css">
+        h6 {  font-family: "Roboto", sans-serif;
+              font-weight: 500;
+              font-size: 15px;}
+    </style>
 </head>
 <body>
-    <h3>Top 1/3 of Countries in GDP per capita</h3>
-    <h6>Regions: A=Asia, D=Australasia, E=Europe, F=Africa, U=Americas</h6>
-    <h6>Select by population size in millons; Small<15, Medium 15-50, Large>50</15></h6>
-     <div id="gdpie"> </div>
-    <div id="selector"> </div>
-    <div id="gdp"> </div>
-    <div id="average-gdppc"></div>
-    <div id="historic-gdp-growth"></div>
+    
+    <div class="col-xs-12">
+        <h3>Top 1/3 of Countries in GDP per capita</h3>
+        <h6>Regions: A=Asia, D=Australasia, E=Europe, F=Africa, U=Americas</h6>
+        <h6>Select by population size in millons; Small<15, Medium 15-50, Large>50</h6>
+    </div>
+    <div class="col-xs-9 col-sm-4 col-md-3">  
+        <div id="gdpie" >  </div></div>
+    <div class="col-xs-3 col-sm-2 col-md-2">    
+        <div id="selector">  </div></div>
+    <div class="col-xs-12 col-sm-5 col-md-4"> 
+        <div id="gdp"> </div></div>
+    <div class="col-xs-12 col-sm-6 col-md-5">
+        <div id="average-gdppc"></div></div>
+    <div class="col-xs-12 col-sm-5 offset-1 col-md-5 offset-1">
+        <div id="historic-gdp-growth"></div></div>
 </body>
 </html>

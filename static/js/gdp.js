@@ -17,7 +17,7 @@ function makeGraphs(error, gdpData, gdpGrowth) {
             d.gdpgrowth = parseFloat(d.gdpgrowth)
     });
     showSelector(ndx);
-    showGdpPc(ndx);
+    showGdpPcRegions(ndx);
     showAverageGdpPc(ndx);
     showHistoricGrowth(hix);
     dc.renderAll();
@@ -33,7 +33,7 @@ function showSelector(ndx) {
         .title(function (d){
             return 'Population: ' + d.key + "=" + d.value;}); 
 }
-function showGdpPc(ndx) {
+function showGdpPcRegions(ndx) {
     var dim = ndx.dimension(dc.pluck("region"));
     var group = dim.group();
     
@@ -49,7 +49,7 @@ function showGdpPc(ndx) {
         .elasticY(true) 
         .xAxisLabel("Region")
         .yAxisLabel("No. of countries")
-        .yAxis().ticks(10);
+        .yAxis().ticks(5);
         
     dc.pieChart('#gdpie')
             .width(250)
@@ -94,14 +94,14 @@ function showAverageGdpPc(ndx) {
         .dimension(dim)
         .group(averageGdpPc)
         .valueAccessor(function(d){
-             return d.value.average;
+             return d.value.average.toFixed(3);
         })
         .transitionDuration(500)
         .x(d3.scale.ordinal())
         .xUnits(dc.units.ordinal)
         .elasticY(true)
         .xAxisLabel("Average per Capita Income")
-        .yAxisLabel("$1000s")
+        .yAxisLabel("$1000")
         .yAxis().ticks(5);
     
 }
@@ -136,8 +136,9 @@ function showHistoricGrowth(hix) {
     var compositeChart = dc.compositeChart('#historic-gdp-growth');
         compositeChart
             .width(400)
-            .height(250)
+            .height(300)
             .dimension(ydim)
+            .xAxisLabel("Annual growth")
             .yAxisLabel("gdp-%")
             .x(d3.time.scale().domain([minYear, maxYear]))
             .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
@@ -153,5 +154,6 @@ function showHistoricGrowth(hix) {
                     .colors('blue')
                     .group(oecdgrowth, 'OECD')
             ])
-            .brushOn(false); 
+            .brushOn(false);
+           
 }
