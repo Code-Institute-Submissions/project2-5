@@ -36,7 +36,7 @@ function showSelector(ndx) {
 function showGdpPcRegions(ndx) {
     var dim = ndx.dimension(dc.pluck("region"));
     var group = dim.group();
-    
+/*    
     dc.barChart("#gdp") 
         .width(400) 
         .height(300) 
@@ -50,7 +50,7 @@ function showGdpPcRegions(ndx) {
         .xAxisLabel("Region")
         .yAxisLabel("No. of countries")
         .yAxis().ticks(5);
-        
+*/        
     dc.pieChart('#gdpie')
             .width(250)
             .height(200)

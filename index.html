@@ -15,27 +15,85 @@
     <script type="text/javascript" src="static/js/gdp.js"></script>
     <title>GDP Data G60</title>
     <style type="text/css">
-        h6 {  font-family: "Roboto", sans-serif;
-              font-weight: 500;
-              font-size: 15px;}
+        header, header2 { margin: 0;
+                        background-color: #909070;
+                        min-height: 50px; }
+        header2 { display: block; }            
+        h6, #blurb, #pie {  font-family: "Roboto", sans-serif;
+                          font-weight: 500;
+                          font-size: 15px; }
+        #pie { position: relative;
+                top: 230px;
+                left:20px; }
+        @media(max-width:991px) { #pie {display:none;}}
+        #blurb { width: 90%; }
+        span { font-weight: 600; }
     </style>
 </head>
 <body>
+    <header class="container-fluid">
+        <div class="row">
+            <a href="index.html">
+                <div class="col-sm-3 "></div>
+            </a>
+            <div class="col-sm-8 ">
+                <div class="row">
+                    <div>
+                       <h3 class="heading">Top 1/3 of Countries in GDP per capita</h3>
+                   </div>
+               </div>
+           </div>    
+        </div>
+    </header>
     
     <div class="col-xs-12">
-        <h3>Top 1/3 of Countries in GDP per capita</h3>
         <h6>Regions: A=Asia, D=Australasia, E=Europe, F=Africa, U=Americas</h6>
         <h6>Select by population size in millons; Small<15, Medium 15-50, Large>50</h6>
     </div>
-    <div class="col-xs-9 col-sm-4 col-md-3">  
-        <div id="gdpie" >  </div></div>
-    <div class="col-xs-3 col-sm-2 col-md-2">    
-        <div id="selector">  </div></div>
-    <div class="col-xs-12 col-sm-5 col-md-4"> 
-        <div id="gdp"> </div></div>
-    <div class="col-xs-12 col-sm-6 col-md-5">
-        <div id="average-gdppc"></div></div>
-    <div class="col-xs-12 col-sm-5 offset-1 col-md-5 offset-1">
-        <div id="historic-gdp-growth"></div></div>
+    <div class="row">
+        <div class="col-xs-7 col-sm-8 col-md-3 col-lg-3">  
+            <div id="gdpie" >
+                <span id=pie>Hover : Number of countries</span> 
+        </div>
+    </div>
+    <div class="col-xs-5 col-sm-3 col-md-2 col-lg-2">    
+        <div id="selector">  
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4"> 
+        <div id="average-gdppc"> 
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+        <div id="blurb"> 
+            <span>Analysis:</span> Small population countries outperfrom large countries which in turn 
+            outperform medium countries.
+            </br> <span>Conclusion:</span> Small countries can be more flexible and adapt quicker to attract investment. 
+            Large countries have a competitive advantage due to home market size. 
+            Medium countries lose out in the middle ground.
+            </div>
+        </div>
+    </div>   
+       
+    <header2 class="container-fluid">
+        <div class="row">
+             <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div>
+                       <h3 class="heading-md">Ireland's performance</h3>
+                   </div>
+            </div>
+        </div>
+    </header2>
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-5 col-lg-4">
+            <div id="graph">new graph here
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-5 offset-1 col-lg-4">
+            <div id="historic-gdp-growth">
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
