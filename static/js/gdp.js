@@ -13,7 +13,7 @@ function makeGraphs(error, gdpData, gdpGrowth, jsonStat) {
     gdpData.forEach(function(d){
         d.dollarthou = parseInt(d.dollarthou);
     })
-    // row 2 charts
+    // row 2 charts--
      // chart 1 data---------------------------------------
     var hix = crossfilter(gdpGrowth);
     gdpGrowth.forEach(function(d){
