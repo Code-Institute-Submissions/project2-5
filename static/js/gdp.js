@@ -1,7 +1,7 @@
 queue()
     .defer(d3.csv, "data/gdp20t.csv")   //region dollarthou dollar rank country
     .defer(d3.csv, "data/historic-gdp.csv") //"Region","year","gdpgrowth"
-    .defer(d3.json, "/data/trade.json")			// in JSON-stat format
+    .defer(d3.json, "data/trade.json")			// in JSON-stat format
     .await(makeGraphs);
 
 var parseYear = d3.time.format("%Y").parse;
