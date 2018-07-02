@@ -244,7 +244,7 @@ function flatData( error, obj ) {
 			}
 			return jsonArr;
 		}
-
+// code from here taken from  https://json-stat.org/tools/js------------------------------------
 		//getValue() converts a dimension/category object into a data value in three steps.
 		//Input example: {"concept":"UNR","area":"US","year":"2010"}
 		//Output example: 9.627692959
@@ -333,11 +333,8 @@ function flatData( error, obj ) {
 			}
 			return jsonstat;
 		}
+// end of code from  https://json-stat.org/tools/js----------------------------------
 
-		function showObs(item, index){
-			console.log(item);
-		}
-		
 		function buildJObject( query, result ){
 		    var jObj = {};
 			jObj.year = query["Year"];
