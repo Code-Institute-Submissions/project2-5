@@ -11,24 +11,24 @@ function makeGraphs(error, gdpData, gdpGrowth, jsonStat) {
         // chart 1
     var ndx = crossfilter(gdpData);
     gdpData.forEach(function(d){
-        d.dollarthou = parseInt(d.dollarthou);
-    })
+        d.dollarthou = parseInt(d.dollarthou, 10);
+    });
     // row 2 charts--
      // chart 1 data---------------------------------------
     var hix = crossfilter(gdpGrowth);
     gdpGrowth.forEach(function(d){
-            d.year = parseYear(d.year)
+            d.year = parseYear(d.year);
     });
     gdpGrowth.forEach(function(d){
-            d.gdpgrowth = parseFloat(d.gdpgrowth)
+            d.gdpgrowth = parseFloat(d.gdpgrowth);
     });
     // chart 2 data---------------------------------------------     
     // function flatData returns a flat json array from json-stat input
     var flatObj = flatData(error, jsonStat);
     var jix = crossfilter(flatObj);
     for (var i=0; i < flatObj.length; i++) {
-            flatObj[i].year = parseYear((flatObj[i].year)) 
-    };
+            flatObj[i].year = parseYear((flatObj[i].year)); 
+    }
     
     showSelector(ndx);
     showGdpPcRegions(ndx);
@@ -46,7 +46,7 @@ function showSelector(ndx) {
         .dimension(dim) 
         .group(group)
         .title(function (d){
-            return 'Population: ' + d.key + "=" + d.value;}); 
+            return 'Pop size: ' + d.key + "=" + d.value + "countries";}); 
 }
 function showGdpPcRegions(ndx) {
     var dim = ndx.dimension(dc.pluck("region"));
@@ -69,7 +69,6 @@ function showAverageGdpPc(ndx) {
         p.average = p.total / p.count;
         return p;
     }
-
     function remove_item(p, v) {
         p.count--;
         if(p.count == 0) {
@@ -81,7 +80,6 @@ function showAverageGdpPc(ndx) {
         }
         return p;
     }
-    
     function initialise() {
         return {count: 0, total: 0, average: 0};
     }
@@ -104,12 +102,9 @@ function showAverageGdpPc(ndx) {
         .xAxisLabel("Average per Capita Income")
         .yAxisLabel("$1000")
         .yAxis().ticks(5);
-    
 }
-
 function showHistoricGrowth(hix) {
     var ydim = hix.dimension(dc.pluck("year"));
-    
     var minYear = ydim.bottom(1)[0].year;
     var maxYear = ydim.top(1)[0].year;
     var irlgrowth = ydim.group().reduceSum(function (d) {
@@ -156,11 +151,9 @@ function showHistoricGrowth(hix) {
                     .group(oecdgrowth, 'OECD')
             ])
             .brushOn(false);
-           
 }
 function showJstat(jix) {
     var ydim = jix.dimension(dc.pluck("year"));
-    
     var minYear = ydim.bottom(1)[0].year;
     var maxYear = ydim.top(1)[0].year;
     var imports = ydim.group().reduceSum(function (d) {
@@ -184,12 +177,13 @@ function showJstat(jix) {
                 return 0;
                 }
             });
-    
     var compositeChart = dc.compositeChart('#trade-balance');
-        compositeChart
+    
+    compositeChart
             .width(400)
             .height(300)
             .dimension(ydim)
+            .xAxisLabel("External Trade")
             .yAxisLabel("$bln")
             .x(d3.time.scale().domain([minYear, maxYear]))
             .legend(dc.legend().x(60).y(20).itemHeight(13).gap(5))
@@ -201,54 +195,55 @@ function showJstat(jix) {
                 dc.lineChart(compositeChart)
                     .colors('red')
                     .group(exports, 'Exports'),
-               dc.lineChart(compositeChart)
+                dc.lineChart(compositeChart)
                     .colors('blue')
                     .group(balance, 'Balance of Trade')            
             ])
             .brushOn(false); 
 }
+// input JSON-stat obj to output flat array of json objs for crossfilter
 function flatData( error, obj ) {
-	return main( error, obj);
-		function main( error, obj ){
+    return main( error, obj);
+	function main( error, obj ){
 			//Validate jsonstat
-			var jsonstat=JSONstat( obj );
-			if( !jsonstat ){
-				return;
-			}
-			var jsonArr = [];  //stores each query result as objects
+		var jsonstat=JSONstat( obj );
+		if( !jsonstat ){
+			return;
+		}
+		var jsonArr = [];  //stores each query result as objects
 			// do queries by year
-			for(var i=1975; i<2016; i++) {
-				var query1={						//"id":["State","Year","Statistic"]
-					"State" : "-",
-					"Year" : i.toString(),
-					"Statistic" : "TSA01C1"
-				};
-				var query2={						
-					"State" : "-",
-					"Year" : i.toString(),
-					"Statistic" : "TSA01C2"
-				};
-				var query3={					
-					"State" : "-",
-					"Year" : i.toString(),
-					"Statistic" : "TSA01C3"
-				};
+		for(var i=1975; i<2016; i++) {
+			var query1={						//"id":["State","Year","Statistic"]
+				"State" : "-",
+				"Year" : i.toString(),
+				"Statistic" : "TSA01C1"
+			};
+			var query2={						
+			    "State" : "-",
+				"Year" : i.toString(),
+				"Statistic" : "TSA01C2"
+			};
+			var query3={					
+				"State" : "-",
+				"Year" : i.toString(),
+				"Statistic" : "TSA01C3"
+			};
 				//Parse: Get value from jsonstat and query
-				var value1=getValue( jsonstat , query1 );
-				var value2=getValue( jsonstat , query2 );
-				var value3=getValue( jsonstat , query3 );
+			var value1=getValue( jsonstat, query1 );
+			var value2=getValue( jsonstat, query2 );
+			var value3=getValue( jsonstat, query3 );
 			//	create Array of objects using query and value;
-				jsonArr.push(buildJObject( query1, value1 ));
-				jsonArr.push(buildJObject( query2, value2 ));
-				jsonArr.push(buildJObject( query3, value3 ));
+			jsonArr.push(buildJObject( query1, value1 ));
+			jsonArr.push(buildJObject( query2, value2 ));
+			jsonArr.push(buildJObject( query3, value3 ));
 			}
 			return jsonArr;
 		}
-// code from here taken from  https://json-stat.org/tools/js------------------------------------
+// code below to access JSON-stat values taken from  https://json-stat.org/tools/js------------------------------------
 		//getValue() converts a dimension/category object into a data value in three steps.
 		//Input example: {"concept":"UNR","area":"US","year":"2010"}
 		//Output example: 9.627692959
-		function getValue( jsonstat , query ){
+		function getValue( jsonstat, query ){
 
 			//1. {"concept":"UNR","area":"US","year":"2010"} ==> [0, 33, 7]
 			var indices=getDimIndices( jsonstat , query );
@@ -261,7 +256,7 @@ function flatData( error, obj ) {
 		//getDimIndices() converts a dimension/category object into an array of dimensions' indices.
 		//Input example: {"concept":"UNR","area":"US","year":"2010"}
 		//Output example: [0, 33, 7]
-		function getDimIndices( jsonstat , query ){
+		function getDimIndices( jsonstat, query ){
 			var 
 				dim=jsonstat.dimension,
 				ids=jsonstat.id || dim.id
@@ -276,7 +271,7 @@ function flatData( error, obj ) {
 		//getValueIndex() converts an array of dimensions' indices into a numeric value index.
 		//Input example: [0, 33, 7]
 		//Output example: 403
-		function getValueIndex( jsonstat , indices ){
+		function getValueIndex( jsonstat, indices ){
 			var size=jsonstat.size || jsonstat.dimension.size; //JSON-stat 2.0-ready
 
 			for( var i=0, ndims=size.length, num=0, mult=1; i<ndims; i++ ){
@@ -289,7 +284,7 @@ function flatData( error, obj ) {
 		//getDimIndex() converts a dimension ID string and a category ID string into the numeric index of that category in that dimension.
 		//Input example: "area", "US"
 		//Output example: 33
-		function getDimIndex( dim , name , value ){
+		function getDimIndex( dim, name, value ){
 			//In single category dimensions, "index" is optional
 			if( !dim[name].category.index ){
 				return 0;
@@ -335,12 +330,12 @@ function flatData( error, obj ) {
 		}
 // end of code from  https://json-stat.org/tools/js----------------------------------
 
-		function buildJObject( query, result ){
-		    var jObj = {};
-			jObj.year = query["Year"];
-			jObj.trade = query["Statistic"];
-			jObj.result = result/1000000;
+        function buildJObject( query, result ){
+		var jObj = {};
+		jObj.year = query["Year"];
+		jObj.trade = query["Statistic"];
+		jObj.result = result/1000000;
 			
-			return jObj;
-		}
+		return jObj;
+    }
 }
