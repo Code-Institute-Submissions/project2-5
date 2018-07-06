@@ -46,7 +46,7 @@ function showSelector(ndx) {
         .dimension(dim) 
         .group(group)
         .title(function (d){
-            return 'Pop size: ' + d.key + "=" + d.value + "countries";}); 
+            return 'Pop size: ' + d.key + "=" + d.value + " countries";}); 
 }
 function showGdpPcRegions(ndx) {
     var dim = ndx.dimension(dc.pluck("region"));
@@ -202,6 +202,7 @@ function showJstat(jix) {
             .brushOn(false); 
 }
 // input JSON-stat obj to output flat array of json objs for crossfilter
+/*
 function flatData( error, obj ) {
     return main( error, obj);
 	function main( error, obj ){
@@ -339,3 +340,4 @@ function flatData( error, obj ) {
 		return jObj;
     }
 }
+*/
