@@ -131,8 +131,8 @@ function showHistoricGrowth(hix) {
     
     var compositeChart = dc.compositeChart('#historic-gdp-growth');
         compositeChart
-            .width(400)
-            .height(300)
+            .width(350)
+            .height(260)
             .dimension(ydim)
             .xAxisLabel("Annual growth")
             .yAxisLabel("gdp-%")
@@ -180,8 +180,8 @@ function showJstat(jix) {
     var compositeChart = dc.compositeChart('#trade-balance');
     
     compositeChart
-            .width(400)
-            .height(300)
+            .width(350)
+            .height(260)
             .dimension(ydim)
             .xAxisLabel("External Trade")
             .yAxisLabel("$bln")
