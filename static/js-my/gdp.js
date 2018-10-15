@@ -8,13 +8,12 @@ var parseYear = d3.time.format("%Y").parse;
 
 function makeGraphs(error, gdpData, gdpGrowth, jsonStat) {
     // row 1 charts-----------------
-        // chart 1
     var ndx = crossfilter(gdpData);
     gdpData.forEach(function(d){
         d.dollarthou = parseInt(d.dollarthou, 10);
     });
     // row 2 charts--
-     // chart 1 data---------------------------------------
+        // chart 1 data---------------------------------------
     var hix = crossfilter(gdpGrowth);
     gdpGrowth.forEach(function(d){
             d.year = parseYear(d.year);
@@ -22,7 +21,7 @@ function makeGraphs(error, gdpData, gdpGrowth, jsonStat) {
     gdpGrowth.forEach(function(d){
             d.gdpgrowth = parseFloat(d.gdpgrowth);
     });
-    // chart 2 data---------------------------------------------     
+        // chart 2 data---------------------------------------------     
     // function flatData returns a flat json array from json-stat input
     var flatObj = flatData(error, jsonStat);
     var jix = crossfilter(flatObj);
