@@ -1,12 +1,14 @@
 # Data Dashboard
-Various graphs around gdp per capita data and trade data 
-for Ireland vs various economic groups
+Row 1; Regionalized gdp per capita data with country population size selection
+Row 2; Historic trade and gdp growth for Ireland vs related economic groups
 
 ## UX
  
 The Dashboard provides a different perspective than the usual league table format.
 It selects countries by small, medium and large populations to see what effect
-population size might have on economic performance.
+population size might have on economic performance. 
+Data is regionalised to show continental average.
+Ireland's historic economic performance is then shown in this context.
 
 ## Features  
 - The first row shows the average GDP per capita by region using only the
@@ -22,19 +24,19 @@ population size might have on economic performance.
 
 ## Technologies Used
 
-- [d3] (https://d3js.org/) . Used indirectly through dc.
-    - D3.js is a JavaScript library for manipulating documents based on data
+- [d3] (https://d3js.org/) 
+    - Used indirectly through dc
 - [crossfilter] (http://square.github.io/crossfilter/)
-    - Crossfilter is a JavaScript library for exploring large multivariate datasets in the browser
+    - Crossfilter handles data for dc
 - [dc] (https://cdnjs.com/libraries/dc)
-    -A multi-dimensional charting library built to work natively with crossfilter and rendered using d3.js
+    - Draws the graphs
 - [queue] (https://cdnjs.com/libraries/queue-async). Loads data for dc.
-    -   A queue evaluates asynchronous tasks and  passes the results to the await callback
+    - Does asynchronous task of data loading and passes result to its await function
 - [Bootstrap] (http://getbootstrap.com/docs/3.3/)
-    A responsive, mobile first styling framework for html, css and javascript. 
+    - The styling framework  
 - [JSON-stat] ( https://json-stat.org/tools/js)
     - JSON-stat format is used by many national and international bodies for data dissemination
-
+    - This project demonstrates how to access and chart this more complex data format.
 
 ## Testing
 
@@ -45,6 +47,7 @@ Tested on a Sony Xperia mobile using Firefox.
 ## Deployment
 
 Site is deployed on GitHub pages; https://saor48.github.io/project2/
+Repository; https://github.com/saor48/project2
 
 ## Credits
 

@@ -10,17 +10,17 @@ function flatData(error, obj) {
         var query1 = {                   //"id":["State","Year","Statistic"]
             "State": "-",
             "Year": i.toString(),
-            "Statistic": "TSA01C1"
+            "Statistic": "TSA01C1"          // imports
         };
         var query2 = {
             "State": "-",
             "Year": i.toString(),
-            "Statistic": "TSA01C2"
+            "Statistic": "TSA01C2"          // exports
         };
         var query3 = {
             "State": "-",
             "Year": i.toString(),
-            "Statistic": "TSA01C3"
+            "Statistic": "TSA01C3"          // balance of trade
         };
         //Parse: Get value from jsonstat and query
         var value1 = getValue(jsonstat, query1);
@@ -131,4 +131,5 @@ function JSONstat(jsonstat) {
     }
     return jsonstat;
 }
+//
 // end of code from  https://json-stat.org/tools/js----------------------------------

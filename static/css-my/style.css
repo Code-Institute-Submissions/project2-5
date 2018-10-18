@@ -1,0 +1,25 @@
+header, footer {
+    margin: 0;
+    background-color: #909070;
+    min-height: 50px; 
+}
+h6, #blurb, #pie {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 15px; 
+}
+#pie { 
+    position: relative;
+    top: 230px;
+    left:20px; 
+}
+#blurb { 
+    width: 90%; 
+}
+span { 
+    font-weight: 600; 
+}
+@media(max-width:991px) {
+    #pie {display:none;}
+}
+    

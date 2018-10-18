@@ -127,16 +127,16 @@ function showHistoricGrowth(hix) {
                 return 0;
                 }
             });
-    
     var compositeChart = dc.compositeChart('#historic-gdp-growth');
-        compositeChart
+    
+    compositeChart
             .width(350)
             .height(260)
             .dimension(ydim)
             .xAxisLabel("Annual growth")
             .yAxisLabel("gdp-%")
             .x(d3.time.scale().domain([minYear, maxYear]))
-            .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+            .legend(dc.legend().x(60).y(20).itemHeight(13).gap(5))
             .renderHorizontalGridLines(true)
             .compose([
                 dc.lineChart(compositeChart)
@@ -162,14 +162,14 @@ function showJstat(jix) {
                 return 0;
                 }
             });
-     var exports = ydim.group().reduceSum(function (d) {
+    var exports = ydim.group().reduceSum(function (d) {
             if (d.trade === 'TSA01C2') {
                 return +d.result;
             } else {
                 return 0;
                 }
             });
-     var balance = ydim.group().reduceSum(function (d) {
+    var balance = ydim.group().reduceSum(function (d) {
             if (d.trade === 'TSA01C3') {
                 return +d.result;
             } else {
