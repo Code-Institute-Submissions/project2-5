@@ -1,6 +1,6 @@
 # Data Dashboard
-Row 1; Regionalized gdp per capita data with country population size selection
-Row 2; Historic trade and gdp growth for Ireland vs related economic groups
+- Row 1; Regionalized gdp per capita data with country population size selection
+- Row 2; Historic trade and gdp growth for Ireland vs related economic groups
 
 ## UX
  
@@ -40,14 +40,14 @@ Ireland's historic economic performance is then shown in this context.
 
 ## Testing
 
-Site tested with google inspect for different screen sizes.
-Also tested on IE and Opera browsers.
-Tested on a Sony Xperia mobile using Firefox.
+- Site tested with google inspect for different screen sizes.
+- Also tested on IE and Opera browsers.
+- Tested on a Sony Xperia mobile using Firefox.
 
 ## Deployment
 
-Site is deployed on GitHub pages; https://saor48.github.io/project2/
-Repository; https://github.com/saor48/project2
+- Site is deployed on GitHub pages; https://saor48.github.io/project2/
+- Repository; https://github.com/saor48/project2
 
 ## Credits
 
